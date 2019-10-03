@@ -24,7 +24,6 @@ fun main()
     )
 
     //we have a race and a registration object
-    val fallRegistrations = FallRegistration()
     val fallRace = Race("Mud Runner 2000", SummerRegistration())
 
     //register all runners and start the race
