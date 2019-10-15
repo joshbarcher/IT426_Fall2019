@@ -1,4 +1,6 @@
-package observer
+package program
+
+import components.Observable
 
 data class LineItem(val type: String,
                     val value: Double,
@@ -6,15 +8,24 @@ data class LineItem(val type: String,
 data class Order(val id: Long,
                  val items: List<LineItem>)
 
-class Orders
+class Orders : Observable()
 {
     val orders = mutableSetOf<Order>()
+
+    fun placeOrders(vararg newOrders: Order)
+    {
+        for (newOrder in newOrders)
+        {
+            placeOrder(newOrder)
+        }
+    }
 
     fun placeOrder(newOrder: Order)
     {
         if (!orders.any { it.id == newOrder.id })
         {
             orders.add(newOrder)
+            notifyObservers(arrayOf("Order created: ${newOrder.id}"))
         }
     }
 }
