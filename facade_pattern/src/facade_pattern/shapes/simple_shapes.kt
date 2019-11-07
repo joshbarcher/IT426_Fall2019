@@ -1,4 +1,4 @@
-package facade.shapes
+package facade_pattern.shapes
 
 class Circle(radius: Double)
     : Ellipse(radius, radius)

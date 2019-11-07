@@ -1,4 +1,4 @@
-package facade.shapes
+package facade_pattern.shapes
 
 open class Shape (var type: ShapeType)
 {

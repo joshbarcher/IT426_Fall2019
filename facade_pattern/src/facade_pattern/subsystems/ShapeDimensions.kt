@@ -1,8 +1,8 @@
-package facade.subsystems
+package facade_pattern.subsystems
 
-import facade.shapes.Ellipse
-import facade.shapes.Line
-import facade.shapes.Rectangle
+import facade_pattern.shapes.Ellipse
+import facade_pattern.shapes.Line
+import facade_pattern.shapes.Rectangle
 import java.lang.RuntimeException
 
 class ShapeDimensions

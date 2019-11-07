@@ -1,8 +1,6 @@
-package facade.subsystems
+package facade_pattern.subsystems
 
-import facade.shapes.Ellipse
-import facade.shapes.Line
-import facade.shapes.Rectangle
+import facade_pattern.shapes.*
 import java.lang.RuntimeException
 
 class CreateShapes
@@ -19,7 +17,11 @@ class CreateShapes
 
     fun generateCircle(radius: Double) : Ellipse
     {
-        return generateEllipse(radius, radius)
+        if (radius < 0)
+        {
+            throw RuntimeException("Invalid radius")
+        }
+        return Circle(radius)
     }
 
     fun generateRectangle(length: Double, width: Double): Rectangle
@@ -34,7 +36,11 @@ class CreateShapes
 
     fun generateSquare(side: Double): Rectangle
     {
-        return generateRectangle(side, side)
+        if (side < 0.0)
+        {
+            throw RuntimeException("Invalid dimensions")
+        }
+        return Square(side)
     }
 
     fun generateLine(x1: Double, y1: Double, x2: Double, y2: Double): Line
@@ -44,7 +50,7 @@ class CreateShapes
 
     fun generatePoint(x: Double, y: Double) : Line
     {
-        return generateLine(x, y, x, y)
+        return Point(x, y)
     }
 
     fun generateOrigin(): Line
