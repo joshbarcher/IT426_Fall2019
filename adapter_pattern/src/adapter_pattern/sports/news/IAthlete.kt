@@ -1,4 +1,4 @@
-package adapter.sports.news
+package adapter_pattern.sports.news
 
 interface IAthlete
 {

@@ -1,4 +1,4 @@
-package adapter.sports.news
+package adapter_pattern.sports.news
 
 class SportsNews {
     private val athletes = mutableListOf<IAthlete>()

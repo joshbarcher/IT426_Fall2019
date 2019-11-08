@@ -1,4 +1,4 @@
-package adapter.sports.athletes
+package adapter_pattern.sports.athletes
 
 class FootballAthlete(
     val first: String,

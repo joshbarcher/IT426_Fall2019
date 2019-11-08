@@ -1,4 +1,4 @@
-package adapter.points
+package adapter_pattern.points
 
 class Plane2D
 {
