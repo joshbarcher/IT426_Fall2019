@@ -40,50 +40,6 @@ class CookingTipsController
         )
     )
 
-    @RequestMapping("/grilling/random")
-    @ResponseBody
-    fun randomGrillingTip(): String
-    {
-        val listOfTips = tipsByType.get("grilling")
-        val tip = listOfTips?.random()
-        return "<h1>A random tip</h1><p>$tip</p>"
-    }
-
-    @RequestMapping(path = ["/grilling", "/cooking/grilling/all"])
-    @ResponseBody
-    fun grillTips(): String
-    {
-        val listOfTips = tipsByType.get("grilling")
-        var results = "<h1>Grilling tips!</h1><ul>"
-
-        if (listOfTips != null)
-        {
-            for (tip in listOfTips)
-            {
-                results += "<li>$tip</li>"
-            }
-        }
-        results += "</ul>"
-
-        return results
-    }
-
-    @RequestMapping("/grilling/num_tips")
-    @ResponseBody
-    fun numGrillingTips(): String
-    {
-        val tips = tipsByType.get("grilling")!!
-        return "<h1>Grilling Tips</h1><p>There are ${tips.size} tips"
-    }
-
-    @RequestMapping("/baking/num_tips")
-    @ResponseBody
-    fun numBakingTips(): String
-    {
-        val tips = tipsByType.get("baking")!!
-        return "<h1>Baking Tips</h1><p>There are ${tips.size} tips"
-    }
-
     @RequestMapping("/all_tips")
     @ResponseBody
     fun allTips(): String
@@ -102,20 +58,6 @@ class CookingTipsController
         }
         results += "</ul>"
         return results
-    }
-
-    @RequestMapping("/grilling/{id}")
-    @ResponseBody
-    fun getGrillingTipById(@PathVariable id: Int): String
-    {
-        val tips = tipsByType.get("grilling")!!
-
-        //double check that I have a good index
-        if (id >= 0 && id < tips.size)
-        {
-            return "<h1>Tip at index - $id</h1><p>${tips[id]}</p>"
-        }
-        return "<h1>Index $id is not valid!</h1>"
     }
 
     @RequestMapping("/print/{type}/{emphasis}")
@@ -138,6 +80,27 @@ class CookingTipsController
                 {
                     results += "<li>$tip</li>"
                 }
+            }
+            results += "</ul>"
+            return results
+        }
+        return "<h1>Cooking type $type not recognized</h1>"
+    }
+
+    @RequestMapping("/{type}/top_three")
+    @ResponseBody
+    fun topThree(@PathVariable type: String): String
+    {
+        var tips = tipsByType.get(type)
+
+        if (tips != null)
+        {
+            //get the top three tips
+            tips = tips.take(3)
+            var results = "<h1>Top three tips!</h1><ul>"
+            for (tip in tips)
+            {
+                results += "<li>$tip</li>"
             }
             results += "</ul>"
             return results
