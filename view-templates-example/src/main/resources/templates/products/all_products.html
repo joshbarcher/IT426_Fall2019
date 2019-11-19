@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Display all products</title>
+</head>
+<body>
+  <h1>All of our products (<span th:text="${products.size()}"></span>
+    total products)</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>On Sale?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="product : ${products}">
+        <td th:text="${product.name}">ABC Item</td>
+        <td th:text="${product.price}">$12.99</td>
+        <td th:text="${product.description}">A product</td>
+        <td>Not on Sale</td>
+      </tr>
+      <tr th:remove="all">
+        <td>ABC Item</td>
+        <td>$12.99</td>
+        <td>A product</td>
+        <td>Not on Sale</td>
+      </tr>
+      <tr th:remove="all">
+        <td>ABC Item</td>
+        <td>$12.99</td>
+        <td>A product</td>
+        <td>Not on Sale</td>
+      </tr>
+      <tr th:remove="all">
+        <td>ABC Item</td>
+        <td>$12.99</td>
+        <td>A product</td>
+        <td>Not on Sale</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
