@@ -15,7 +15,9 @@ class ProductsController
         Product("Bowling Ball", 19.99, "A ball to bowl with",
                 SaleType.ON_SALE),
         Product("Bicycle", 199.99, "A bike",
-                SaleType.PREMIER_ITEM)
+                SaleType.PREMIER_ITEM),
+        Product("Rocketship", 7.99, "A kid's rocket",
+                SaleType.LIMITED_ITEM)
     )
 
     @RequestMapping("/products/afew")
