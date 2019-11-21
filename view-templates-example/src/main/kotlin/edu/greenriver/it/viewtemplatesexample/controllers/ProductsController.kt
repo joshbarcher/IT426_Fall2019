@@ -4,21 +4,16 @@ import edu.greenriver.it.viewtemplatesexample.model.Product
 import edu.greenriver.it.viewtemplatesexample.model.SaleType
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.*
 
 @Controller
 class ProductsController
 {
-    val fakeProducts = listOf<Product>(
-        Product("Surfboard", 99.99, "A board to surf upon",
-                SaleType.NO_SALE),
-        Product("Bowling Ball", 19.99, "A ball to bowl with",
-                SaleType.ON_SALE),
-        Product("Bicycle", 199.99, "A bike",
-                SaleType.PREMIER_ITEM),
-        Product("Rocketship", 7.99, "A kid's rocket",
-                SaleType.LIMITED_ITEM)
+    var fakeProducts = mutableListOf<Product>(
+        Product("Surfboard", 99.99, "A board to surf upon", false),
+        Product("Bowling Ball", 19.99, "A ball to bowl with", true),
+        Product("Bicycle", 199.99, "A bike", false),
+        Product("Rocketship", 7.99, "A kid's rocket", true)
     )
 
     @RequestMapping("/products/afew")
@@ -53,6 +48,26 @@ class ProductsController
 
         //load the view
         return "products/product"
+    }
+
+    @GetMapping("/products/add")
+    fun showAddForm(model: Model): String
+    {
+        model.addAttribute("product", Product())
+        return "products/add_product_form"
+    }
+
+    @PostMapping("/products/add")
+    fun handleAddForm(@ModelAttribute product: Product,
+                      model: Model): String
+    {
+        //save the data...
+        fakeProducts.add(product)
+
+        //test to make sure we got it...
+        println(product)
+
+        return "redirect:/products/" + product.name
     }
 }
 
