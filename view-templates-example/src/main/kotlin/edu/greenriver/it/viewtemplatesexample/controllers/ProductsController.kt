@@ -4,6 +4,7 @@ import edu.greenriver.it.viewtemplatesexample.model.Product
 import edu.greenriver.it.viewtemplatesexample.model.SaleType
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
@@ -34,4 +35,36 @@ class ProductsController
         model.addAttribute("products", fakeProducts)
         return "products/all_products"
     }
+
+    @RequestMapping("/products/{name}")
+    fun product(@PathVariable name: String,
+                model: Model): String
+    {
+        //find the product
+        for (product in fakeProducts)
+        {
+            if (product.name == name)
+            {
+                model.addAttribute("product", product)
+            }
+        }
+
+        //assume we found it...
+
+        //load the view
+        return "products/product"
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
