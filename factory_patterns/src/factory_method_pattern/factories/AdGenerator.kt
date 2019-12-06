@@ -1,4 +1,7 @@
-package factory_method_pattern.advertisements
+package factory_method_pattern.factories
+
+import factory_method_pattern.advertisements.Advertisement
+import factory_method_pattern.advertisements.IRegionalAdGenerator
 
 //the job of this class is to provide ads, but
 //it needs a secondary object to give location-appropriate
